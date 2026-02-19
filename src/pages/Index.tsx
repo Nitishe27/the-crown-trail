@@ -122,7 +122,7 @@ export default function Index() {
           </p>
 
           <Link
-            to="/clue/1"
+            to="/compass"
             className="inline-block font-cinzel group relative overflow-hidden"
             style={{
               padding: "1rem 3rem",
@@ -150,41 +150,7 @@ export default function Index() {
             BEGIN THE QUEST
           </Link>
         </div>
-
-        {/* Clue number hints */}
-        <div
-          className="flex justify-center gap-3 mt-12"
-          style={{
-            opacity: visible ? 1 : 0,
-            transition: "opacity 0.8s ease 1.4s",
-          }}
-        >
-          {Array.from({ length: 10 }, (_, i) => (
-            <Link
-              key={i}
-              to={`/clue/${i + 1}`}
-              className="font-cinzel text-xs w-7 h-7 flex items-center justify-center rounded-full transition-all duration-300"
-              style={{
-                border: "1px solid hsl(43 85% 55% / 0.25)",
-                color: "hsl(43 40% 50%)",
-              }}
-              onMouseEnter={(e) => {
-                const el = e.currentTarget as HTMLElement;
-                el.style.borderColor = "hsl(43 85% 55% / 0.8)";
-                el.style.color = "hsl(43 85% 65%)";
-                el.style.boxShadow = "0 0 12px hsl(43 85% 55% / 0.3)";
-              }}
-              onMouseLeave={(e) => {
-                const el = e.currentTarget as HTMLElement;
-                el.style.borderColor = "hsl(43 85% 55% / 0.25)";
-                el.style.color = "hsl(43 40% 50%)";
-                el.style.boxShadow = "none";
-              }}
-            >
-              {i + 1}
-            </Link>
-          ))}
-        </div>
+        {/* Clue number hints block has been removed from here */}
       </div>
     </main>
   );

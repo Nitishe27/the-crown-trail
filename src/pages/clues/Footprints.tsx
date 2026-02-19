@@ -12,9 +12,6 @@ export default function Footprints() {
       clue="Two sets of prints — one large, one small — lead through the garden past the crumbling wall. The smaller steps halt by the old sundial; inside its base, the final secret tile."
       accentColor="hsl(43 60% 45%)"
       bgSymbol="👣"
-      prevPath="/lantern"
-      nextPath="/crown-found"
-      nextLabel="The Crown Awaits →"
     />
   );
 }

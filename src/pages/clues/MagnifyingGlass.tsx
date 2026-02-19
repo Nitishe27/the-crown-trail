@@ -12,9 +12,7 @@ export default function MagnifyingGlass() {
       clue="They left a fingerprint on the velvet throne — a whorled pattern pointing toward the stone. Examine closely the third coat of arms; the hidden letter lives beneath its charms."
       accentColor="hsl(210 70% 55%)"
       bgSymbol="🔍"
-      prevPath="/the-map"
-      nextPath="/iron-key"
-      nextLabel="Find the Key →"
+
     />
   );
 }

@@ -12,9 +12,7 @@ export default function IronKey() {
       clue="This key fits no door you've tried before — seek the chamber behind the tapestry floor. Three turns left, then twice to the right; the lock will yield when the moon is bright."
       accentColor="hsl(43 55% 45%)"
       bgSymbol="🗝️"
-      prevPath="/magnifying-glass"
-      nextPath="/telescope"
-      nextLabel="Look to the Stars →"
+
     />
   );
 }

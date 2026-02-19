@@ -12,9 +12,7 @@ export default function Hourglass() {
       clue="When the last grain falls, all secrets speak. The thief had precisely one night — one week from the solstice, when shadows peak. Count the grains, count the hours, count the cost."
       accentColor="hsl(43 85% 55%)"
       bgSymbol="⏳"
-      prevPath="/royal-scroll"
-      nextPath="/lantern"
-      nextLabel="Follow the Light →"
+
     />
   );
 }

@@ -12,9 +12,7 @@ export default function Telescope() {
       clue="Train your eye on the eastern tower's peak — there a signal light blinks twice per week. Three long flashes followed by two short; a message sent from the conspirator's court."
       accentColor="hsl(25 80% 50%)"
       bgSymbol="🔭"
-      prevPath="/iron-key"
-      nextPath="/royal-scroll"
-      nextLabel="Unroll the Scroll →"
+
     />
   );
 }

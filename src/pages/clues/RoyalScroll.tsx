@@ -12,9 +12,7 @@ export default function RoyalScroll() {
       clue="The ancient text is written in reverse — hold it to a mirror to lift the curse. The twelfth word in the third decree names the vault where the crown would be."
       accentColor="hsl(0 65% 50%)"
       bgSymbol="📜"
-      prevPath="/telescope"
-      nextPath="/hourglass"
-      nextLabel="Time Runs Short →"
+
     />
   );
 }

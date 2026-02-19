@@ -12,9 +12,7 @@ export default function TheMap() {
       clue="X marks the spot where rivers meet the stone — a castle forgotten, its secrets overgrown. The road not taken curves left at the mill; follow the dotted line beyond the hill."
       accentColor="hsl(35 85% 50%)"
       bgSymbol="🗺️"
-      prevPath="/compass"
-      nextPath="/magnifying-glass"
-      nextLabel="Look Closer →"
+
     />
   );
 }
