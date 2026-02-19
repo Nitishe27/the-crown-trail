@@ -3,16 +3,16 @@ import { Link, useLocation } from "react-router-dom";
 
 const navItems = [
   { path: "/", label: "The Conspiracy", short: "Home" },
-  { path: "/clue/1", label: "I", short: "Compass" },
-  { path: "/clue/2", label: "II", short: "Map" },
-  { path: "/clue/3", label: "III", short: "Glass" },
-  { path: "/clue/4", label: "IV", short: "Key" },
-  { path: "/clue/5", label: "V", short: "Scope" },
-  { path: "/clue/6", label: "VI", short: "Scroll" },
-  { path: "/clue/7", label: "VII", short: "Glass" },
-  { path: "/clue/8", label: "VIII", short: "Lantern" },
-  { path: "/clue/9", label: "IX", short: "Prints" },
-  { path: "/clue/10", label: "X", short: "Crown" },
+  { path: "/compass", label: "I", short: "Compass" },
+  { path: "/the-map", label: "II", short: "Map" },
+  { path: "/magnifying-glass", label: "III", short: "Glass" },
+  { path: "/iron-key", label: "IV", short: "Key" },
+  { path: "/telescope", label: "V", short: "Scope" },
+  { path: "/royal-scroll", label: "VI", short: "Scroll" },
+  { path: "/hourglass", label: "VII", short: "Hourglass" },
+  { path: "/lantern", label: "VIII", short: "Lantern" },
+  { path: "/footprints", label: "IX", short: "Prints" },
+  { path: "/crown-found", label: "X", short: "Crown" },
 ];
 
 export default function Header() {
