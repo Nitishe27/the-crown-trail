@@ -223,7 +223,7 @@
 
 import { useEffect, useState, ReactNode } from "react";
 
-type EffectType = "fire" | "pollen" | "wind" | "ancient" | "gold" | "chamber" | "code" | "star" | "castle" | "footprint";
+type EffectType = "fire" | "pollen" | "wind" | "ancient" | "gold" | "chamber" | "code" | "star" | "castle" | "footprint" | "magic";
 
 interface ClueLayoutProps {
   number: number;
@@ -235,6 +235,50 @@ interface ClueLayoutProps {
   accentColor: string;
   bgSymbol: string;
   effectType?: EffectType; 
+}
+
+/* --- NEW: MAGICAL ENERGY FIELD --- */
+function MagicEnergyField({ color }: { color: string }) {
+  const orbs = Array.from({ length: 20 });
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {/* Pulsing Core Nebula */}
+      <div 
+        className="absolute inset-0 opacity-40 animate-pulse"
+        style={{
+          background: `radial-gradient(circle at 50% 50%, ${color} 0%, transparent 70%)`,
+          filter: 'blur(80px)',
+          animationDuration: '6s'
+        }}
+      />
+      
+      {/* Floating Mana Orbs */}
+      {orbs.map((_, i) => (
+        <div
+          key={i}
+          className="absolute rounded-full animate-float-particle"
+          style={{
+            width: `${Math.random() * 12 + 4}px`,
+            height: `${Math.random() * 12 + 4}px`,
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 100}%`,
+            backgroundColor: color,
+            boxShadow: `0 0 15px ${color}, 0 0 30px ${color}`,
+            opacity: 0,
+            animationDuration: `${Math.random() * 4 + 4}s`,
+            animationDelay: `${Math.random() * 5}s`,
+            "--tx": `${Math.random() * 200 - 100}px`,
+            "--ty": `${Math.random() * -200 - 100}px`
+          } as any}
+        />
+      ))}
+
+      {/* Rhythmic Expansion Rings */}
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="w-[60vw] h-[60vw] border-2 border-white/5 rounded-full animate-ping opacity-20" style={{ animationDuration: '3s' }} />
+      </div>
+    </div>
+  );
 }
 
 /* --- FOOTPRINT TRAIL --- */
@@ -253,7 +297,6 @@ function FootprintTrail({ color }: { color: string }) {
               color: color,
               transform: `rotate(${i % 2 === 0 ? '80deg' : '100deg'})`,
               animationDelay: `${i * 0.8}s`,
-              /* Added glow for better visibility on black */
               textShadow: `0 0 15px ${color}, 0 0 5px white`,
             } as any}
           >
@@ -328,22 +371,38 @@ function GoldRain() {
   );
 }
 
-/* --- 4. WIND BREEZE --- */
+/* --- 4. WIND BREEZE (BALANCED) --- */
 function WindBreeze({ color }: { color: string }) {
-  const windPaths = Array.from({ length: 8 });
-  const leaves = Array.from({ length: 12 });
+  const windPaths = Array.from({ length: 8 }); 
+  const leaves = Array.from({ length: 10 });    
   return (
     <div className="absolute inset-0 w-full h-full overflow-hidden">
-      <svg className="w-full h-full opacity-40" viewBox="0 0 1000 1000" preserveAspectRatio="none">
+      <svg className="w-full h-full opacity-50" viewBox="0 0 1000 1000" preserveAspectRatio="none">
         {windPaths.map((_, i) => (
-          <path key={i} d={`M -200 ${Math.random() * 1000} Q ${200 + Math.random() * 300} ${Math.random() * 1000}, 1200 ${Math.random() * 1000}`}
-            fill="transparent" stroke={color} strokeWidth={Math.random() * 3 + 1} strokeLinecap="round" className="animate-wind-flow"
-            style={{ filter: "blur(6px)", strokeDasharray: "200 800", animationDuration: `${Math.random() * 2 + 2}s`, animationDelay: `${Math.random() * 5}s` } as any} />
+          <path key={i} d={`M -200 ${Math.random() * 1000} Q ${300 + Math.random() * 200} ${Math.random() * 1000}, 1200 ${Math.random() * 1000}`}
+            fill="transparent" 
+            stroke={color} 
+            strokeWidth="2" 
+            strokeLinecap="round" 
+            className="animate-wind-flow"
+            style={{ 
+              filter: "blur(2px)", 
+              strokeDasharray: "150 850", 
+              animationDuration: `${Math.random() * 2 + 3}s`, 
+              animationDelay: `${Math.random() * 4}s` 
+            } as any} />
         ))}
       </svg>
       {leaves.map((_, i) => (
         <div key={i} className="absolute animate-leaf-tumble text-2xl" 
-          style={{ top: `${Math.random() * 100 - 10}%`, left: "-10%", color: Math.random() > 0.5 ? "#556b2f" : "#cd853f", opacity: 0, animationDuration: `${Math.random() * 3 + 3}s`, animationDelay: `${Math.random() * 10}s` } as any} >🍃</div>
+          style={{ 
+            top: `${Math.random() * 100 - 10}%`, 
+            left: "-10%", 
+            color: Math.random() > 0.5 ? "#556b2f" : "#cd853f", 
+            opacity: 0, 
+            animationDuration: `${Math.random() * 2 + 4}s`, 
+            animationDelay: `${Math.random() * 6}s` 
+          } as any} >🍃</div>
       ))}
     </div>
   );
@@ -422,10 +481,43 @@ function PollenDrift({ color }: { color: string }) {
   );
 }
 
+/* --- UPDATED: ROTATING CHAMBER --- */
 function StoneGears({ color }: { color: string }) {
+  const satelliteGears = [
+    { size: 'w-32 h-32', top: '10%', left: '15%', speed: '20s', rev: false },
+    { size: 'w-24 h-24', top: '20%', left: '80%', speed: '12s', rev: true },
+    { size: 'w-48 h-48', top: '70%', left: '10%', speed: '30s', rev: true },
+    { size: 'w-20 h-20', top: '80%', left: '85%', speed: '15s', rev: false },
+  ];
+
   return (
-    <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden opacity-20">
-      <div className="absolute w-[600px] h-[600px] border-[12px] border-dashed rounded-full animate-spin-slow" style={{ borderColor: color }} />
+    <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-20">
+      {/* Central Rotating Hub */}
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="relative w-[600px] h-[600px] border-[12px] border-dashed rounded-full animate-spin-slow flex items-center justify-center" 
+             style={{ borderColor: color, animationDuration: '45s' }}>
+          <div className="w-[400px] h-[400px] border-8 border-dotted rounded-full animate-spin-reverse" 
+               style={{ borderColor: color, animationDuration: '20s' }} />
+          <div className="absolute w-full h-[2px] bg-white/10 rotate-45" />
+          <div className="absolute w-full h-[2px] bg-white/10 -rotate-45" />
+        </div>
+      </div>
+
+      {/* Scattered Small Rotating Chambers */}
+      {satelliteGears.map((gear, i) => (
+        <div 
+          key={i}
+          className={`absolute ${gear.size} border-4 border-dotted rounded-full flex items-center justify-center ${gear.rev ? 'animate-spin-reverse' : 'animate-spin-slow'}`}
+          style={{ 
+            top: gear.top, 
+            left: gear.left, 
+            borderColor: color, 
+            animationDuration: gear.speed 
+          }}
+        >
+          <div className="w-1/2 h-1/2 border-2 border-dashed rounded-full" style={{ borderColor: color }} />
+        </div>
+      ))}
     </div>
   );
 }
@@ -462,6 +554,7 @@ export default function ClueLayout({
         {effectType === "star" && <CosmicNavigator color={accent("1")} />}
         {effectType === "castle" && <CastleChallenge />}
         {effectType === "footprint" && <FootprintTrail color={accent("0.6")} />}
+        {effectType === "magic" && <MagicEnergyField color={accent("0.8")} />}
       </div>
 
       <div className={`relative z-10 w-full max-w-2xl mx-auto text-center ${effectType === 'wind' ? 'animate-wind-sway' : ''}`} 
@@ -494,8 +587,20 @@ export default function ClueLayout({
         @keyframes coin-fall { 0% { transform: translateY(0); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { transform: translateY(110vh); opacity: 0; } }
         @keyframes coin-spin { 0% { transform: rotateY(0deg); } 100% { transform: rotateY(360deg); } }
         @keyframes shooting-star { 0% { transform: translateX(0) translateY(0) rotate(-45deg); width: 0; opacity: 0; } 2% { opacity: 1; width: 120px; } 15% { transform: translateX(-120vw) translateY(120vh) rotate(-45deg); width: 0; opacity: 0; } 100% { transform: translateX(-120vw) translateY(120vh) rotate(-45deg); opacity: 0; } }
-        @keyframes wind-flow { 0% { stroke-dashoffset: 1000; opacity: 0; } 100% { stroke-dashoffset: -1000; opacity: 0; } }
-        @keyframes leaf-tumble { 0% { transform: translate(0, 0) rotate(0deg); opacity: 0; } 15% { opacity: 0.8; } 100% { transform: translate(120vw, 40vh) rotate(1080deg); opacity: 0; } }
+        
+        @keyframes wind-flow { 
+          0% { stroke-dashoffset: 1000; opacity: 0; } 
+          10% { opacity: 1; }
+          90% { opacity: 1; }
+          100% { stroke-dashoffset: -1000; opacity: 0; } 
+        }
+        
+        @keyframes leaf-tumble { 
+          0% { transform: translate(-10vw, 0) rotate(0deg); opacity: 0; } 
+          20% { opacity: 1; } 
+          80% { opacity: 1; }
+          100% { transform: translate(110vw, 30vh) rotate(720deg); opacity: 0; } 
+        }
         @keyframes wind-sway { 0%, 100% { transform: rotate(0deg) translateX(0); } 50% { transform: rotate(1deg) translateX(10px); } }
         @keyframes twinkle { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
         @keyframes matrix-fall { 0% { transform: translateY(-100%); opacity: 0; } 100% { transform: translateY(100%); opacity: 0; } }
@@ -510,21 +615,28 @@ export default function ClueLayout({
         @keyframes cloud-drift { from { transform: translateX(-20%); opacity: 0.3; } to { transform: translateX(120%); opacity: 0.6; } }
         @keyframes flag-wave { 0%, 100% { transform: rotate(-3deg) skewX(2deg); } 50% { transform: rotate(5deg) skewX(-2deg); } }
 
-        /* IMPROVED FOOTPRINT ANIMATION */
         @keyframes footstep-fade {
           0% { opacity: 0; transform: scale(0.7); }
           15% { opacity: 1; transform: scale(1); }
           85% { opacity: 0.9; }
           100% { opacity: 0; transform: scale(1.1); }
         }
+
+        /* NEW: MAGIC ENERGY FIELD ANIMATION */
+        @keyframes float-particle {
+          0% { transform: translate(0, 0) scale(0); opacity: 0; }
+          20% { opacity: 1; }
+          80% { opacity: 1; }
+          100% { transform: translate(var(--tx), var(--ty)) scale(1.5); opacity: 0; }
+        }
         
         .animate-fire-rise { animation: fire-rise linear infinite; }
         .animate-coin-fall { animation: coin-fall linear infinite; }
         .animate-coin-spin { animation: coin-spin 1.5s linear infinite; }
         .animate-shooting-star { animation: shooting-star infinite linear; }
-        .animate-wind-flow { animation: wind-flow infinite ease-in-out; }
+        .animate-wind-flow { animation: wind-flow infinite linear; }
         .animate-leaf-tumble { animation: leaf-tumble infinite ease-in; }
-        .animate-wind-sway { animation: wind-sway 4s infinite ease-in-out; }
+        .animate-wind-sway { animation: wind-sway 5s infinite ease-in-out; }
         .animate-twinkle { animation: twinkle infinite ease-in-out; }
         .animate-matrix-fall { animation: matrix-fall linear infinite; }
         .animate-pollen-fall { animation: pollen-fall infinite linear; }
@@ -534,6 +646,7 @@ export default function ClueLayout({
         .animate-cloud-drift { animation: cloud-drift linear infinite; }
         .animate-flag-wave { animation: flag-wave 2.5s ease-in-out infinite; }
         .animate-footstep { animation: footstep-fade 8s infinite; }
+        .animate-float-particle { animation: float-particle linear infinite; }
         .clip-flag { clip-path: polygon(0 0, 100% 50%, 0 100%); }
       `}</style>
     </main>
