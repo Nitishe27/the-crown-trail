@@ -223,7 +223,7 @@
 
 import { useEffect, useState, ReactNode } from "react";
 
-type EffectType = "fire" | "pollen" | "wind" | "ancient" | "gold" | "chamber" | "code" | "star";
+type EffectType = "fire" | "pollen" | "wind" | "ancient" | "gold" | "chamber" | "code" | "star" | "castle" | "footprint";
 
 interface ClueLayoutProps {
   number: number;
@@ -237,50 +237,108 @@ interface ClueLayoutProps {
   effectType?: EffectType; 
 }
 
-/* --- 1. STAR NAVIGATION (Rhythmic Update) --- */
-function CosmicNavigator({ color }: { color: string }) {
-  const stars = Array.from({ length: 100 });
-  // Increased count to 6 stars to create a "wave" effect
-  const shootingStarWaves = Array.from({ length: 6 });
+/* --- FOOTPRINT TRAIL --- */
+function FootprintTrail({ color }: { color: string }) {
+  const steps = Array.from({ length: 12 });
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none flex items-center justify-center">
+      <div className="relative w-full h-full">
+        {steps.map((_, i) => (
+          <div 
+            key={i}
+            className="absolute animate-footstep opacity-0 text-3xl md:text-4xl"
+            style={{
+              left: `${15 + (i * 7)}%`,
+              top: `${50 + (i % 2 === 0 ? 8 : -8)}%`,
+              color: color,
+              transform: `rotate(${i % 2 === 0 ? '80deg' : '100deg'})`,
+              animationDelay: `${i * 0.8}s`,
+              /* Added glow for better visibility on black */
+              textShadow: `0 0 15px ${color}, 0 0 5px white`,
+            } as any}
+          >
+            👣
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
 
+/* --- 1. FIRE SPARKLES --- */
+function FireSparkles({ color }: { color: string }) {
+  const sparkles = Array.from({ length: 50 });
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      <div className="absolute inset-[-50%] animate-spin-slow opacity-30" 
-           style={{ background: `radial-gradient(circle at center, ${color} 0%, transparent 70%)`, animationDuration: '120s' }} />
-      
-      {stars.map((_, i) => (
-        <div key={i} className="absolute rounded-full bg-white animate-twinkle"
-          style={{ width: Math.random() * 3 + 'px', height: Math.random() * 3 + 'px', top: Math.random() * 100 + '%', left: Math.random() * 100 + '%', animationDelay: Math.random() * 5 + 's' } as any} />
-      ))}
-
-      {/* Rhythmic Shooting Stars: Grouped delays create the "rhythm" */}
-      {shootingStarWaves.map((_, i) => (
-        <div key={i} className="absolute w-[2px] h-[2px] bg-white animate-shooting-star" 
+      {sparkles.map((_, i) => (
+        <div 
+          key={i} 
+          className="absolute bottom-[-20px] rounded-full animate-fire-rise" 
           style={{ 
-            top: `${10 + (i * 12)}%`, // Spaced out vertically
-            left: "110%", // Start off-screen
-            // Sequence: 0.5s, 1.0s, 1.5s... creates a rhythmic pulse
-            animationDelay: `${i * 0.8}s`, 
-            animationDuration: '10s', // 2s movement + 8s pause
-            boxShadow: `0 0 10px 2px ${color}` 
-          } as any} />
+            width: `${Math.random() * 4 + 2}px`, 
+            height: `${Math.random() * 4 + 2}px`, 
+            backgroundColor: color, 
+            left: `${Math.random() * 100}%`, 
+            opacity: 0, 
+            filter: "blur(0.5px)", 
+            boxShadow: `0 0 10px ${color}, 0 0 20px ${color}`,
+            animationDuration: `${Math.random() * 3 + 2}s`, 
+            animationDelay: `${Math.random() * 5}s`,
+            "--drift": `${Math.random() * 200 - 100}px` 
+          } as any} 
+        />
       ))}
     </div>
   );
 }
 
-/* --- 2. WIND BREEZE --- */
+/* --- 2. RHYTHMIC STAR NAVIGATION --- */
+function CosmicNavigator({ color }: { color: string }) {
+  const stars = Array.from({ length: 80 });
+  const shootingStarWaves = Array.from({ length: 6 });
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      <div className="absolute inset-[-50%] animate-spin-slow opacity-20" 
+           style={{ background: `radial-gradient(circle at center, ${color} 0%, transparent 70%)`, animationDuration: '120s' }} />
+      {stars.map((_, i) => (
+        <div key={i} className="absolute rounded-full bg-white animate-twinkle"
+          style={{ width: Math.random() * 2 + 'px', height: Math.random() * 2 + 'px', top: Math.random() * 100 + '%', left: Math.random() * 100 + '%', animationDelay: Math.random() * 5 + 's' } as any} />
+      ))}
+      {shootingStarWaves.map((_, i) => (
+        <div key={i} className="absolute w-[2px] h-[2px] bg-white animate-shooting-star" 
+          style={{ top: `${15 + (i * 12)}%`, left: "110%", animationDelay: `${i * 0.8}s`, animationDuration: '10s', boxShadow: `0 0 10px 2px ${color}` } as any} />
+      ))}
+    </div>
+  );
+}
+
+/* --- 3. GOLD RAIN --- */
+function GoldRain() {
+  const coins = Array.from({ length: 30 });
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {coins.map((_, i) => (
+        <div key={i} className="absolute animate-coin-fall" 
+          style={{ top: '-60px', left: `${Math.random() * 100}%`, animationDuration: `${Math.random() * 3 + 4}s`, animationDelay: `${Math.random() * 8}s` } as any}>
+          <div className="w-5 h-5 rounded-full border border-yellow-200/50 animate-coin-spin shadow-[0_0_15px_rgba(234,179,8,0.5)]" 
+               style={{ background: "radial-gradient(circle at 30% 30%, #fde047 0%, #ca8a04 100%)" }} />
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/* --- 4. WIND BREEZE --- */
 function WindBreeze({ color }: { color: string }) {
   const windPaths = Array.from({ length: 8 });
   const leaves = Array.from({ length: 12 });
   return (
     <div className="absolute inset-0 w-full h-full overflow-hidden">
-      <svg className="w-full h-full opacity-60" viewBox="0 0 1000 1000" preserveAspectRatio="none">
+      <svg className="w-full h-full opacity-40" viewBox="0 0 1000 1000" preserveAspectRatio="none">
         {windPaths.map((_, i) => (
           <path key={i} d={`M -200 ${Math.random() * 1000} Q ${200 + Math.random() * 300} ${Math.random() * 1000}, 1200 ${Math.random() * 1000}`}
             fill="transparent" stroke={color} strokeWidth={Math.random() * 3 + 1} strokeLinecap="round" className="animate-wind-flow"
-            style={{ filter: "blur(6px)", strokeDasharray: "200 800", animationDuration: `${Math.random() * 2 + 2}s`, animationDelay: `${Math.random() * 5}s` } as any}
-          />
+            style={{ filter: "blur(6px)", strokeDasharray: "200 800", animationDuration: `${Math.random() * 2 + 2}s`, animationDelay: `${Math.random() * 5}s` } as any} />
         ))}
       </svg>
       {leaves.map((_, i) => (
@@ -291,82 +349,83 @@ function WindBreeze({ color }: { color: string }) {
   );
 }
 
-/* --- 3. SECRET CODE ROOM --- */
-function DigitalMatrix({ color }: { color: string }) {
-  const columns = Array.from({ length: 20 });
-  const characters = "01ABCDEFGHIJKLMNOPQRSTUVWXYZ@#$%&";
+/* --- 5. ANCIENT RUNES --- */
+function AncientRunes({ color }: { color: string }) {
   return (
-    <div className="absolute inset-0 overflow-hidden opacity-40 font-mono pointer-events-none">
-      <div className="flex justify-between w-full h-full px-4">
-        {columns.map((_, i) => (
-          <div key={i} className="flex flex-col animate-matrix-fall" style={{ animationDelay: `${Math.random() * 5}s`, animationDuration: `${Math.random() * 3 + 5}s` } as any}>
-            {Array.from({ length: 25 }).map((_, j) => (
-              <span key={j} style={{ color: j === 0 ? '#fff' : color }} className="my-1 text-xs">{characters[Math.floor(Math.random() * characters.length)]}</span>
-            ))}
+    <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden opacity-20">
+      <div className="absolute w-[500px] h-[500px] border-2 border-dashed rounded-full animate-spin-slow" style={{ borderColor: color, animationDuration: '60s' }} />
+      <div className="absolute w-[350px] h-[350px] border border-double rounded-full animate-spin-reverse" style={{ borderColor: color, animationDuration: '40s' }} />
+    </div>
+  );
+}
+
+/* --- 6. CASTLE CHALLENGE --- */
+function CastleChallenge() {
+  const clouds = Array.from({ length: 8 });
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none bg-gradient-to-b from-slate-950 via-[#020617] to-black">
+      <div className="absolute inset-0 bg-white/0 animate-lightning z-10" />
+      <div className="absolute bottom-0 w-full h-[40vh] opacity-30 bg-slate-900 shadow-[0_-20px_60px_rgba(30,58,138,0.4)]" 
+           style={{ clipPath: "polygon(0% 100%, 0% 70%, 15% 45%, 30% 65%, 45% 35%, 60% 70%, 80% 25%, 100% 65%, 100% 100%)" }} />
+      {clouds.map((_, i) => (
+        <div key={i} className="absolute bg-slate-800/40 blur-[90px] rounded-full animate-cloud-drift"
+          style={{ 
+            width: `${Math.random() * 500 + 300}px`, 
+            height: '280px', 
+            top: `${Math.random() * 35}%`, 
+            left: `${-30 + (i * 20)}%`,
+            animationDuration: `${22 + Math.random() * 15}s`,
+            animationDelay: `${i * -4}s`
+          } as any} />
+      ))}
+      <div className="absolute bottom-20 left-10 md:left-24 animate-flag-wave origin-bottom opacity-80 z-20">
+         <div className="w-2 h-40 bg-zinc-800 shadow-xl" />
+         <div className="absolute top-0 left-2 w-24 h-14 bg-red-900 border-l-4 border-red-500 clip-flag" />
+      </div>
+      <div className="absolute bottom-0 w-full h-24 bg-zinc-950 border-t border-white/5 z-10" />
+      <div className="absolute bottom-0 w-full h-32 flex justify-around items-end z-20 px-10">
+        {[1, 2, 3, 4, 5, 6].map(i => (
+          <div key={i} className="mb-10 group relative">
+             <div className="w-5 h-8 bg-orange-400 rounded-t-full blur-[1px] shadow-[0_0_20px_#f97316,0_0_40px_rgba(249,115,22,0.4)] animate-pulse" 
+                  style={{ animationDelay: `${i * 0.9}s`, animationDuration: '3.5s' }} />
+             <div className="absolute -bottom-2 -left-2 w-10 h-10 bg-orange-500/10 blur-xl" />
           </div>
         ))}
       </div>
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/5 to-transparent h-20 w-full animate-scanline" />
     </div>
   );
 }
 
-/* --- 4. PUZZLE CHAMBER --- */
-function StoneGears({ color }: { color: string }) {
+/* --- OTHER THEMES --- */
+function DigitalMatrix({ color }: { color: string }) {
+  const columns = Array.from({ length: 20 });
+  const characters = "01ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   return (
-    <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
-      <div className="absolute w-[600px] h-[600px] border-[12px] border-dashed rounded-full animate-spin-slow opacity-30 flex items-center justify-center" style={{ borderColor: color, animationDuration: '30s' }}>
-          <div className="w-[85%] h-[85%] border-4 border-double rounded-full opacity-50" style={{ borderColor: color }} />
-      </div>
-      <div className="absolute inset-0 opacity-10" style={{ backgroundImage: `linear-gradient(${color} 2px, transparent 2px), linear-gradient(90deg, ${color} 2px, transparent 2px)`, backgroundSize: '100px 100px' }} />
-    </div>
-  );
-}
-
-/* --- 5. GOLD RAIN --- */
-function GoldRain() {
-  const coins = Array.from({ length: 30 });
-  return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {coins.map((_, i) => (
-        <div key={i} className="absolute top-[-50px] animate-coin-fall" style={{ left: `${Math.random() * 100}%`, animationDuration: `${Math.random() * 3 + 4}s`, animationDelay: `${Math.random() * 5}s` } as any}>
-          <div className="w-4 h-4 rounded-full border border-yellow-200/40 animate-coin-spin shadow-[0_0_10px_rgba(234,179,8,0.6)]" style={{ background: "radial-gradient(circle at 30% 30%, #fde047 0%, #ca8a04 100%)" }} />
+    <div className="absolute inset-0 overflow-hidden opacity-30 font-mono pointer-events-none flex justify-between px-4">
+      {columns.map((_, i) => (
+        <div key={i} className="flex flex-col animate-matrix-fall" style={{ animationDelay: `${Math.random() * 5}s`, animationDuration: `${Math.random() * 3 + 5}s` } as any}>
+          {Array.from({ length: 20 }).map((_, j) => (
+            <span key={j} style={{ color: j === 0 ? '#fff' : color }} className="my-1 text-xs">{characters[Math.floor(Math.random() * characters.length)]}</span>
+          ))}
         </div>
       ))}
     </div>
   );
 }
 
-/* --- 6. FIRE SPARKLES --- */
-function FireSparkles({ color }: { color: string }) {
-  const sparkles = Array.from({ length: 45 });
-  return (
-    <>
-      {sparkles.map((_, i) => (
-        <div key={i} className="absolute bottom-[-50px] rounded-full animate-fire-rise" style={{ width: `${Math.random() * 5 + 2}px`, height: `${Math.random() * 5 + 2}px`, backgroundColor: color, left: `${Math.random() * 100}%`, opacity: 0, filter: "blur(0.5px)", boxShadow: `0 0 12px ${color}`, animationDuration: `${Math.random() * 4 + 3}s`, "--drift": `${Math.random() * 150 - 75}px` } as any} />
-      ))}
-    </>
-  );
-}
-
-/* --- 7. POLLEN DRIFT --- */
 function PollenDrift({ color }: { color: string }) {
-  const spores = Array.from({ length: 35 });
+  const spores = Array.from({ length: 30 });
   return (
-    <>
-      {spores.map((_, i) => (
-        <div key={i} className="absolute top-[-20px] rounded-full animate-pollen-fall" style={{ width: `${Math.random() * 6 + 4}px`, height: `${Math.random() * 6 + 4}px`, backgroundColor: color, left: `${Math.random() * 100}%`, opacity: 0, animationDuration: `${Math.random() * 10 + 10}s`, "--sway": `${Math.random() * 160 - 80}px` } as any} />
-      ))}
-    </>
+    <>{spores.map((_, i) => (
+      <div key={i} className="absolute top-[-20px] rounded-full animate-pollen-fall" style={{ width: '6px', height: '6px', backgroundColor: color, left: `${Math.random() * 100}%`, opacity: 0, animationDuration: `${Math.random() * 8 + 8}s`, "--sway": `${Math.random() * 160 - 80}px` } as any} />
+    ))}</>
   );
 }
 
-/* --- 8. ANCIENT RUNES --- */
-function AncientRunes({ color }: { color: string }) {
+function StoneGears({ color }: { color: string }) {
   return (
     <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden opacity-20">
-      <div className="absolute w-[500px] h-[500px] border-2 border-dashed rounded-full animate-spin-slow" style={{ borderColor: color, animationDuration: '60s' }} />
-      <div className="absolute w-[350px] h-[350px] border border-double rounded-full animate-spin-reverse" style={{ borderColor: color, animationDuration: '40s' }} />
+      <div className="absolute w-[600px] h-[600px] border-[12px] border-dashed rounded-full animate-spin-slow" style={{ borderColor: color }} />
     </div>
   );
 }
@@ -386,14 +445,14 @@ export default function ClueLayout({
     return () => { clearTimeout(t1); clearTimeout(t2); };
   }, [title, effectType]);
 
-  const accent = (opacity: string) =>
-    accentColor.replace("hsl(", "hsl(").replace(")", ` / ${opacity})`);
+  const accent = (opacity: string) => accentColor.replace("hsl(", "hsl(").replace(")", ` / ${opacity})`);
 
   return (
     <main className="relative min-h-screen flex flex-col items-center justify-center px-4 pt-24 pb-16 overflow-hidden bg-black text-white">
       
       <div className="fixed inset-0 pointer-events-none z-0">
         <AncientRunes color={accent("0.5")} />
+        
         {effectType === "fire" && <FireSparkles color={accent("1")} />}
         {effectType === "pollen" && <PollenDrift color="hsl(65 70% 80%)" />}
         {effectType === "wind" && <WindBreeze color={accent("0.8")} />}
@@ -401,6 +460,8 @@ export default function ClueLayout({
         {effectType === "chamber" && <StoneGears color={accent("0.8")} />}
         {effectType === "code" && <DigitalMatrix color={accent("1")} />}
         {effectType === "star" && <CosmicNavigator color={accent("1")} />}
+        {effectType === "castle" && <CastleChallenge />}
+        {effectType === "footprint" && <FootprintTrail color={accent("0.6")} />}
       </div>
 
       <div className={`relative z-10 w-full max-w-2xl mx-auto text-center ${effectType === 'wind' ? 'animate-wind-sway' : ''}`} 
@@ -425,40 +486,55 @@ export default function ClueLayout({
       </div>
 
       <style>{`
-        /* Updated Rhythmic Shooting Star */
-        @keyframes shooting-star { 
-          0% { transform: translateX(0) translateY(0) rotate(-45deg); width: 0; opacity: 0; } 
-          2% { opacity: 1; width: 120px; }
-          15% { transform: translateX(-120vw) translateY(120vh) rotate(-45deg); width: 0; opacity: 0; } 
-          100% { transform: translateX(-120vw) translateY(120vh) rotate(-45deg); opacity: 0; } 
+        @keyframes fire-rise {
+          0% { transform: translateY(0) scale(1); opacity: 0; }
+          20% { opacity: 1; }
+          100% { transform: translateY(-110vh) translateX(var(--drift)) scale(0.5); opacity: 0; }
         }
-
-        @keyframes wind-flow { 0% { stroke-dashoffset: 1000; opacity: 0; } 20% { opacity: 1; } 80% { opacity: 1; } 100% { stroke-dashoffset: -1000; opacity: 0; } }
-        @keyframes leaf-tumble { 0% { transform: translate(0, 0) rotate(0deg) scale(0.8); opacity: 0; } 15% { opacity: 0.8; } 100% { transform: translate(120vw, 40vh) rotate(1080deg) scale(1.2); opacity: 0; } }
+        @keyframes coin-fall { 0% { transform: translateY(0); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { transform: translateY(110vh); opacity: 0; } }
+        @keyframes coin-spin { 0% { transform: rotateY(0deg); } 100% { transform: rotateY(360deg); } }
+        @keyframes shooting-star { 0% { transform: translateX(0) translateY(0) rotate(-45deg); width: 0; opacity: 0; } 2% { opacity: 1; width: 120px; } 15% { transform: translateX(-120vw) translateY(120vh) rotate(-45deg); width: 0; opacity: 0; } 100% { transform: translateX(-120vw) translateY(120vh) rotate(-45deg); opacity: 0; } }
+        @keyframes wind-flow { 0% { stroke-dashoffset: 1000; opacity: 0; } 100% { stroke-dashoffset: -1000; opacity: 0; } }
+        @keyframes leaf-tumble { 0% { transform: translate(0, 0) rotate(0deg); opacity: 0; } 15% { opacity: 0.8; } 100% { transform: translate(120vw, 40vh) rotate(1080deg); opacity: 0; } }
         @keyframes wind-sway { 0%, 100% { transform: rotate(0deg) translateX(0); } 50% { transform: rotate(1deg) translateX(10px); } }
-        @keyframes twinkle { 0%, 100% { opacity: 0.3; transform: scale(1); } 50% { opacity: 1; transform: scale(1.2); } }
+        @keyframes twinkle { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
         @keyframes matrix-fall { 0% { transform: translateY(-100%); opacity: 0; } 100% { transform: translateY(100%); opacity: 0; } }
-        @keyframes scanline { 0% { top: -20%; } 100% { top: 120%; } }
-        @keyframes fire-rise { 0% { transform: translateY(0); opacity: 0; } 10% { opacity: 1; } 100% { transform: translateY(-110vh) translateX(var(--drift)); opacity: 0; } }
-        @keyframes coin-fall { 0% { transform: translateY(-50px) rotateX(0deg); opacity: 0; } 100% { transform: translateY(110vh) rotateX(720deg); opacity: 0; } }
-        @keyframes coin-spin { from { transform: rotateY(0deg); } to { transform: rotateY(360deg); } }
         @keyframes pollen-fall { 0% { transform: translateY(0); opacity: 0; } 100% { transform: translateY(110vh) translateX(var(--sway)); opacity: 0; } }
         @keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
         @keyframes spin-reverse { from { transform: rotate(360deg); } to { transform: rotate(0deg); } }
         
+        @keyframes lightning {
+          0%, 94%, 96%, 100% { background-color: rgba(255, 255, 255, 0); }
+          95%, 97% { background-color: rgba(200, 230, 255, 0.4); }
+        }
+        @keyframes cloud-drift { from { transform: translateX(-20%); opacity: 0.3; } to { transform: translateX(120%); opacity: 0.6; } }
+        @keyframes flag-wave { 0%, 100% { transform: rotate(-3deg) skewX(2deg); } 50% { transform: rotate(5deg) skewX(-2deg); } }
+
+        /* IMPROVED FOOTPRINT ANIMATION */
+        @keyframes footstep-fade {
+          0% { opacity: 0; transform: scale(0.7); }
+          15% { opacity: 1; transform: scale(1); }
+          85% { opacity: 0.9; }
+          100% { opacity: 0; transform: scale(1.1); }
+        }
+        
+        .animate-fire-rise { animation: fire-rise linear infinite; }
+        .animate-coin-fall { animation: coin-fall linear infinite; }
+        .animate-coin-spin { animation: coin-spin 1.5s linear infinite; }
         .animate-shooting-star { animation: shooting-star infinite linear; }
         .animate-wind-flow { animation: wind-flow infinite ease-in-out; }
         .animate-leaf-tumble { animation: leaf-tumble infinite ease-in; }
         .animate-wind-sway { animation: wind-sway 4s infinite ease-in-out; }
         .animate-twinkle { animation: twinkle infinite ease-in-out; }
         .animate-matrix-fall { animation: matrix-fall linear infinite; }
-        .animate-scanline { animation: scanline 4s linear infinite; }
-        .animate-fire-rise { animation: fire-rise infinite linear; }
-        .animate-coin-fall { animation: coin-fall infinite linear; }
-        .animate-coin-spin { animation: coin-spin 2s infinite linear; }
         .animate-pollen-fall { animation: pollen-fall infinite linear; }
         .animate-spin-slow { animation: spin-slow linear infinite; }
         .animate-spin-reverse { animation: spin-reverse linear infinite; }
+        .animate-lightning { animation: lightning 6s infinite; }
+        .animate-cloud-drift { animation: cloud-drift linear infinite; }
+        .animate-flag-wave { animation: flag-wave 2.5s ease-in-out infinite; }
+        .animate-footstep { animation: footstep-fade 8s infinite; }
+        .clip-flag { clip-path: polygon(0 0, 100% 50%, 0 100%); }
       `}</style>
     </main>
   );

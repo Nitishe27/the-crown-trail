@@ -7,7 +7,7 @@ export default function Footprints() {
       number={9}
       subtitle="Clue IX"
       title="The Footprints"
-      
+      effectType="footprint"
       icon={<FootprintsIcon />}
       flavor="Fresh mud preserved the trail — the thief had been here only hours before."
       clue="Two sets of prints — one large, one small — lead through the garden past the crumbling wall. The smaller steps halt by the old sundial; inside its base, the final secret tile."

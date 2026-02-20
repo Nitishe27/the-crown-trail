@@ -7,6 +7,7 @@ export default function RoyalScroll() {
       number={6}
       subtitle="Clue VI"
       title="The Royal Scroll"
+      effectType="castle"
       icon={<ScrollIcon />}
       flavor="The scroll carried the royal seal — yet the king never signed it."
       clue="The ancient text is written in reverse — hold it to a mirror to lift the curse. The twelfth word in the third decree names the vault where the crown would be."
