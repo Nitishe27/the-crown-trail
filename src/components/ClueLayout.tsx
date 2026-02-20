@@ -481,7 +481,7 @@ function PollenDrift({ color }: { color: string }) {
   );
 }
 
-/* --- UPDATED: ROTATING CHAMBER --- */
+/* --- UPDATED: ROTATING CHAMBER (Central Hub Removed) --- */
 function StoneGears({ color }: { color: string }) {
   const satelliteGears = [
     { size: 'w-32 h-32', top: '10%', left: '15%', speed: '20s', rev: false },
@@ -492,17 +492,6 @@ function StoneGears({ color }: { color: string }) {
 
   return (
     <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-20">
-      {/* Central Rotating Hub */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className="relative w-[600px] h-[600px] border-[12px] border-dashed rounded-full animate-spin-slow flex items-center justify-center" 
-             style={{ borderColor: color, animationDuration: '45s' }}>
-          <div className="w-[400px] h-[400px] border-8 border-dotted rounded-full animate-spin-reverse" 
-               style={{ borderColor: color, animationDuration: '20s' }} />
-          <div className="absolute w-full h-[2px] bg-white/10 rotate-45" />
-          <div className="absolute w-full h-[2px] bg-white/10 -rotate-45" />
-        </div>
-      </div>
-
       {/* Scattered Small Rotating Chambers */}
       {satelliteGears.map((gear, i) => (
         <div 
