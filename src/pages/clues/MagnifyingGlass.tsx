@@ -7,7 +7,7 @@ export default function MagnifyingGlass() {
       number={3}
       subtitle="Clue III"
       title="The Magnifying Glass"
-      effectType="pollen" 
+      effectType="chamber" 
       icon={<MagnifyingGlassIcon />}
       flavor="The glass was found in the royal study, still warm to the touch."
       clue="They left a fingerprint on the velvet throne — a whorled pattern pointing toward the stone. Examine closely the third coat of arms; the hidden letter lives beneath its charms."
