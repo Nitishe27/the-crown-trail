@@ -12,7 +12,8 @@ const navItems = [
   { path: "/hourglass", label: "VII", short: "Hourglass" },
   { path: "/lantern", label: "VIII", short: "Lantern" },
   { path: "/footprints", label: "IX", short: "Prints" },
-  { path: "/crown-found", label: "X", short: "Crown" },
+  { path: "/stonetab", label: "X", short: "Prints" },
+  { path: "/crown-found", label: "XI", short: "Crown" },
 ];
 
 export default function Header() {
@@ -75,7 +76,7 @@ export default function Header() {
           </div>
         </Link>
 
-        {/* Desktop Nav */}
+        
         <nav className="hidden lg:flex items-center gap-1">
           {navItems.map((item) => {
             const isActive = location.pathname === item.path;

@@ -6,11 +6,14 @@ export default function RoyalScroll() {
     <ClueLayout
       number={6}
       subtitle="Clue VI"
-      title="The Royal Scroll"
+      title="The crown calls you forward"
       effectType="castle"
       icon={<ScrollIcon />}
-      flavor="The scroll carried the royal seal — yet the king never signed it."
-      clue="The ancient text is written in reverse — hold it to a mirror to lift the curse. The twelfth word in the third decree names the vault where the crown would be."
+      clue="Not a market loud with cries,
+But shelves beneath bright city skies,
+Along Darley’s busy way,
+Where green stands proud in neat display.
+"
       accentColor="hsl(0 65% 50%)"
       bgSymbol="📜"
 

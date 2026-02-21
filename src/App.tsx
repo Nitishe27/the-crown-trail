@@ -14,6 +14,7 @@ import Hourglass from "./pages/clues/Hourglass";
 import Lantern from "./pages/clues/Lantern";
 import Footprints from "./pages/clues/Footprints";
 import CrownFound from "./pages/clues/CrownFound";
+import StoneTablet from "./pages/clues/StoneTablet";
 import NotFound from "./pages/NotFound";
 import Header from "./components/Header";
 
@@ -37,6 +38,7 @@ const App = () => (
           <Route path="/hourglass" element={<Hourglass />} />
           <Route path="/lantern" element={<Lantern />} />
           <Route path="/footprints" element={<Footprints />} />
+          <Route path="/stonetab" element={<StoneTablet />} />
           <Route path="/crown-found" element={<CrownFound />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

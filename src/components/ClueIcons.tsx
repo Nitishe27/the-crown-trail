@@ -246,3 +246,40 @@ export function CrownFinalIcon({ size = 140 }: { size?: number }) {
     </svg>
   );
 }
+
+// ... (keep all your existing icons above)
+
+export function StoneTabletIcon({ size = 130 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 120 120" className="animate-pulse-glow">
+      <defs>
+        <filter id="stone-texture">
+          <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" result="noise" />
+          <feDiffuseLighting in="noise" lightingColor="hsl(210 10% 40%)" surfaceScale="2">
+            <feDistantLight azimuth="45" elevation="60" />
+          </feDiffuseLighting>
+        </filter>
+      </defs>
+      {/* The Tablet Base */}
+      <rect x="25" y="15" width="70" height="90" rx="2" fill="hsl(210 10% 25%)" stroke="hsl(210 10% 45%)" strokeWidth="2" />
+      
+      {/* Decorative "Ancient" Etchings */}
+      <g stroke="hsl(210 15% 60%)" strokeWidth="1.5" strokeLinecap="round" opacity="0.6">
+        <path d="M40 35 L80 35" />
+        <path d="M40 45 L70 45" />
+        <path d="M40 55 L80 55" />
+        <path d="M40 65 L60 65" />
+        <path d="M40 75 L80 75" />
+        
+        {/* Central "Glyph" */}
+        <path d="M55 85 L60 92 L65 85" fill="none" stroke="hsl(43 85% 55%)" opacity="0.8" />
+      </g>
+
+      {/* Cracks and weathering */}
+      <path d="M25 40 L35 45 M95 70 L85 75" stroke="hsl(210 10% 15%)" strokeWidth="1" />
+      
+      {/* Highlight Corner */}
+      <path d="M25 25 L25 15 L35 15" fill="none" stroke="white" strokeWidth="0.5" opacity="0.2" />
+    </svg>
+  );
+}

@@ -6,10 +6,13 @@ export default function Hourglass() {
     <ClueLayout
       number={7}
       subtitle="Clue VII"
-      title="The Hourglass"
+      title="Think before you move"
       icon={<HourglassIcon />}
-      flavor="The hourglass was discovered still running in the empty treasury."
-      clue="When the last grain falls, all secrets speak. The thief had precisely one night — one week from the solstice, when shadows peak. Count the grains, count the hours, count the cost."
+      clue="Strike the pins and hear them fall,
+Chase the hoop and score them all,
+Guide the cue with steady hand -
+Step into a world of play so grand.
+"
       accentColor="hsl(43 85% 55%)"
       bgSymbol="⏳"
 

@@ -5,12 +5,12 @@ export default function CrownFound() {
   return (
     <ClueLayout
       number={10}
-      subtitle="Clue X — Final"
+      subtitle="Clue XI — Final"
       title="The Crown Found"
       effectType="gold" 
       icon={<CrownFinalIcon />}
-      flavor="The conspiracy ends here. Justice begins."
-      clue="You've followed every thread, unmasked the lie — the crown was hidden where the old graves lie. Beneath the stone of Queen Maren's rest, the greatest treasure pressed against her chest."
+      
+      clue="Back to the base, where all it started... "
       accentColor="hsl(43 95% 65%)"
       bgSymbol="👑"
     />

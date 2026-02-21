@@ -6,11 +6,13 @@ export default function MagnifyingGlass() {
     <ClueLayout
       number={3}
       subtitle="Clue III"
-      title="The Magnifying Glass"
-      effectType="chamber" 
+      title="Let’s see how sharp you are"
+      effectType="chamber"
       icon={<MagnifyingGlassIcon />}
-      flavor="The glass was found in the royal study, still warm to the touch."
-      clue="They left a fingerprint on the velvet throne — a whorled pattern pointing toward the stone. Examine closely the third coat of arms; the hidden letter lives beneath its charms."
+      clue="From soil to spoon without the mud,
+A berry’s journey, rich and sweet as blood.
+Blooming bright on Maitland Place.
+."
       accentColor="hsl(210 70% 55%)"
       bgSymbol="🔍"
 

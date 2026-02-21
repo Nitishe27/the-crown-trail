@@ -6,11 +6,14 @@ export default function IronKey() {
     <ClueLayout
       number={4}
       subtitle="Clue IV"
-      title="The Iron Key"
+      title="Decode and continue..."
       effectType="code" 
       icon={<KeyIcon />}
-      flavor="The key was worn around the neck of the fallen guard."
-      clue="This key fits no door you've tried before — seek the chamber behind the tapestry floor. Three turns left, then twice to the right; the lock will yield when the moon is bright."
+      clue="Not in a shrine, yet sacred ground,
+Where Colombo’s oldest park is found.
+Seated high in golden peace,
+Where noise and chaos gently cease.
+"
       accentColor="hsl(43 55% 45%)"
       bgSymbol="🗝️"
 
