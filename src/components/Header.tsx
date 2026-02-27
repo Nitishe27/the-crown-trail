@@ -77,7 +77,7 @@ export default function Header() {
         </Link>
 
         
-        <nav className="hidden lg:flex items-center gap-1">
+        {/* <nav className="hidden lg:flex items-center gap-1">
           {navItems.map((item) => {
             const isActive = location.pathname === item.path;
             return (
@@ -101,10 +101,10 @@ export default function Header() {
               </Link>
             );
           })}
-        </nav>
+        </nav> */}
 
         {/* Mobile Menu Button */}
-        <button
+        {/* <button
           className="lg:hidden flex flex-col gap-1.5 p-2"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle menu"
@@ -126,7 +126,7 @@ export default function Header() {
               }}
             />
           ))}
-        </button>
+        </button> */}
       </div>
 
       {/* Mobile Nav */}
