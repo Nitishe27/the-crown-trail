@@ -28,7 +28,11 @@ export default function TheMap() {
       title="The map reveals more…"
       effectType="wind" // Explicitly setting pollen
       icon={<MapIcon />}
-      clue="TBC"
+      clue="Within the Arcade’s lively frame,
+A rabbit’s name but not the same,
+No carrots here, no forest stroll -
+Just music, food, and a hidden hole.
+"
       accentColor="hsl(35 85% 50%)"
       bgSymbol="🗺️"
     />

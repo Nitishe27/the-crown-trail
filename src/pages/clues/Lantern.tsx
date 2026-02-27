@@ -10,7 +10,11 @@ export default function Lantern() {
       effectType="magic"
       icon={<LanternIcon />}
       
-      clue="TBC"
+      clue="Where beans are ground and moments slow, 
+On Perahera where breezes flow,
+Seek Barista’s fragrant art,
+In steaming cups that warm the heart.
+"
       accentColor="hsl(43 100% 60%)"
       bgSymbol="🏮"
     />
