@@ -2,18 +2,18 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 const navItems = [
-  { path: "/", label: "The Conspiracy", short: "Home" },
-  { path: "/compass", label: "I", short: "Compass" },
-  { path: "/the-map", label: "II", short: "Map" },
-  { path: "/magnifying-glass", label: "III", short: "Glass" },
-  { path: "/iron-key", label: "IV", short: "Key" },
-  { path: "/telescope", label: "V", short: "Scope" },
-  { path: "/royal-scroll", label: "VI", short: "Scroll" },
-  { path: "/hourglass", label: "VII", short: "Hourglass" },
-  { path: "/lantern", label: "VIII", short: "Lantern" },
-  { path: "/footprints", label: "IX", short: "Prints" },
-  { path: "/stonetab", label: "X", short: "Prints" },
-  { path: "/crown-found", label: "XI", short: "Crown" },
+  // { path: "/", label: "The Conspiracy", short: "Home" },
+  // { path: "/compass", label: "I", short: "Compass" },
+  // { path: "/the-map", label: "II", short: "Map" },
+  // { path: "/magnifying-glass", label: "III", short: "Glass" },
+  // { path: "/iron-key", label: "IV", short: "Key" },
+  // { path: "/telescope", label: "V", short: "Scope" },
+  // { path: "/royal-scroll", label: "VI", short: "Scroll" },
+  // { path: "/hourglass", label: "VII", short: "Hourglass" },
+  // { path: "/lantern", label: "VIII", short: "Lantern" },
+  // { path: "/footprints", label: "IX", short: "Prints" },
+  // { path: "/stonetab", label: "X", short: "Prints" },
+  // { path: "/crown-found", label: "XI", short: "Crown" },
 ];
 
 export default function Header() {
