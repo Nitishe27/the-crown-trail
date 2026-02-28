@@ -77,7 +77,7 @@ export default function Header() {
         </Link>
 
         
-        {/* <nav className="hidden lg:flex items-center gap-1">
+        <nav className="hidden lg:flex items-center gap-1">
           {navItems.map((item) => {
             const isActive = location.pathname === item.path;
             return (
@@ -101,7 +101,7 @@ export default function Header() {
               </Link>
             );
           })}
-        </nav> */}
+        </nav>
 
         {/* Mobile Menu Button */}
         {/* <button
@@ -130,7 +130,7 @@ export default function Header() {
       </div>
 
       {/* Mobile Nav */}
-      <div
+      {/* <div
         className="lg:hidden overflow-hidden transition-all duration-500"
         style={{
           maxHeight: menuOpen ? "600px" : "0",
@@ -158,7 +158,7 @@ export default function Header() {
             );
           })}
         </nav>
-      </div>
+      </div> */}
     </header>
   );
 }

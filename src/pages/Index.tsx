@@ -111,7 +111,7 @@ export default function Index() {
               margin: "0 auto 1.5rem",
             }}
           >
-            "The crown was taken in the dead of night. Eleven clues remain — each one a thread in the grand tapestry of deception."
+            "The crown was taken in the dead of night. Clues remain — each one a thread in the grand tapestry of deception"
           </p>
 
           <p
