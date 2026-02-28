@@ -5,7 +5,7 @@ export default function Lantern() {
   return (
     <ClueLayout
       number={8}
-      subtitle="Clue VIII"
+      subtitle="Clue VII"
       title="Closer… but not quite there"
       effectType="magic"
       icon={<LanternIcon />}

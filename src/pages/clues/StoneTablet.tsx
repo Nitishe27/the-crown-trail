@@ -6,11 +6,11 @@ export default function StoneTablet() {
     <ClueLayout
       number={11}
       subtitle="Clue X"
-      title="One step nearer to glory...."
+      title="Return Back "
      // A slight glitch effect to simulate "unreadable" or "shifting" text
       icon={<StoneTabletIcon />}
       
-      clue="TBC"
+      clue="Back to the base, where all it started..."
       accentColor="hsl(210 10% 40%)" // A cold, stony slate grey
       bgSymbol="🗿"
     />

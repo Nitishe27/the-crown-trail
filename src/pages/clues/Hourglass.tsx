@@ -5,7 +5,7 @@ export default function Hourglass() {
   return (
     <ClueLayout
       number={7}
-      subtitle="Clue VII"
+      subtitle="Clue VI"
       title="Think before you move"
       icon={<HourglassIcon />}
       clue="Strike the pins and hear them fall,

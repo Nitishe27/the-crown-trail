@@ -5,7 +5,7 @@ export default function Footprints() {
   return (
     <ClueLayout
       number={9}
-      subtitle="Clue IX"
+      subtitle="Clue VIII"
       title="Think you’ve got this? Prove it"
       effectType="footprint"
       icon={<FootprintsIcon />}

@@ -29,8 +29,6 @@ export default function Compass() {
       effectType="fire" // Explicitly setting fire
       icon={<CompassIcon />}
       clue="Where independence meets exercise, not a road, not a park alone. 
-By day they run, by night it gleams,
-A monument born of freedom’s dreams.
 "
       accentColor="hsl(43 85% 55%)"
       bgSymbol="🧭"
